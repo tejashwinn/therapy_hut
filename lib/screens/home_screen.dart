@@ -4,7 +4,6 @@ import 'package:therapy_hut/screens/history_meeting_screen.dart';
 import 'package:therapy_hut/screens/meeting_screen.dart';
 import 'package:therapy_hut/utils/colors.dart';
 import 'package:therapy_hut/widgets/custom_button.dart';
-import 'package:therapy_hut/widgets/home_meeting_button.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> pages = [
-    MeetingScreen(),
+    const MeetingScreen(),
     const HistoryMeetingScreen(),
     const Text("contacts"),
     CustomButton(text: 'Log Out', onPressed: () => AuthMethods().signOut())

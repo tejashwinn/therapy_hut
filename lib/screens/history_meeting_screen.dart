@@ -1,9 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:therapy_hut/resources/auth_methods.dart';
 import 'package:therapy_hut/resources/firestore_methods.dart';
+import 'package:therapy_hut/resources/jitsi_meet_methods.dart';
 
-class HistoryMeetingScreen extends StatelessWidget {
+class HistoryMeetingScreen extends StatefulWidget {
   const HistoryMeetingScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HistoryMeetingScreen> createState() => _HistoryMeetingScreenState();
+}
+
+class _HistoryMeetingScreenState extends State<HistoryMeetingScreen> {
+  final AuthMethods _authMethods = AuthMethods();
+  final JitsiMeetMethods _jitsiMeetingMethods = JitsiMeetMethods();
+
+  bool isAudioMuted = true;
+  bool isVideoMuted = true;
+
+  joinMeeting(BuildContext context, String roomNo, String subject) {
+    _jitsiMeetingMethods.createMeeting(
+        roomName: roomNo,
+        isAudioMuted: isAudioMuted,
+        isVideoMuted: isVideoMuted,
+        username: _authMethods.user.displayName!,
+        subject: subject);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +41,26 @@ class HistoryMeetingScreen extends StatelessWidget {
         return ListView.builder(
           itemCount: (snapshot.data! as dynamic).docs.length,
           itemBuilder: (context, index) => ListTile(
+            onTap: () => joinMeeting(
+              context,
+              (snapshot.data! as dynamic).docs[index]['meetingName'].toString(),
+              (snapshot.data! as dynamic)
+                  .docs[index]['meetingSubject']
+                  .toString(),
+            ),
             title: Text(
-              'Session Id: ${(snapshot.data! as dynamic).docs[index]['meetingName']}',
+              '${(snapshot.data! as dynamic).docs[index]['meetingSubject'].isEmpty ? (snapshot.data! as dynamic).docs[index]['meetingName'] : (snapshot.data! as dynamic).docs[index]['meetingSubject']}',
             ),
             subtitle: Text(
-              'Joined on ${DateFormat.yMMMd().format((snapshot.data! as dynamic).docs[index]['createdAt'].toDate())} ${DateFormat.jm().format((snapshot.data! as dynamic).docs[index]['createdAt'].toDate())} \n Topic: ${(snapshot.data! as dynamic).docs[index]['meetingSubject']}',
+              'Session Id: ${(snapshot.data! as dynamic).docs[index]['meetingName']}\nJoined on: ${DateFormat.yMMMd().format((snapshot.data! as dynamic).docs[index]['createdAt'].toDate())} ${DateFormat.jm().format((snapshot.data! as dynamic).docs[index]['createdAt'].toDate())}',
             ),
+
+            // title: Text(
+            //   'Session Id: ${(snapshot.data! as dynamic).docs[index]['meetingName']}',
+            // ),
+            // subtitle: Text(
+            //   'Joined on ${DateFormat.yMMMd().format((snapshot.data! as dynamic).docs[index]['createdAt'].toDate())} ${DateFormat.jm().format((snapshot.data! as dynamic).docs[index]['createdAt'].toDate())}\nTopic: ${(snapshot.data! as dynamic).docs[index]['meetingSubject']}',
+            // ),
           ),
         );
       },

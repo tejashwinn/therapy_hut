@@ -33,7 +33,7 @@ class JitsiMeetMethods {
         ..userAvatarURL = _authMethods.user.photoURL
         ..audioMuted = isAudioMuted
         ..videoMuted = isVideoMuted
-        ..subject = subject.isEmpty ? "null" : subject;
+        ..subject = subject.isEmpty ? name : subject;
       _fireStoreMethods.addToMeetingHistory(roomName, subject);
       await JitsiMeet.joinMeeting(options);
     } catch (error) {

@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:therapy_hut/resources/auth_methods.dart';
 import 'package:therapy_hut/resources/jitsi_meet_methods.dart';
@@ -53,10 +52,12 @@ class _CreateVideoCallScreenState extends State<CreateVideoCallScreen> {
   }
 
   _showError() {
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text("Subject Cannot be empty."),
-      backgroundColor: Colors.red,
-    ));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Subject Cannot be empty."),
+        backgroundColor: Colors.red,
+      ),
+    );
   }
 
   @override
