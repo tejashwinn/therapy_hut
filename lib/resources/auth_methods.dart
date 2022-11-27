@@ -10,6 +10,7 @@ class AuthMethods {
 
   Stream<User?> get authChanges => _auth.authStateChanges();
   User get user => _auth.currentUser!;
+
   Future<bool> signInWithGOogle(BuildContext context) async {
     bool res = false;
     try {
@@ -39,6 +40,7 @@ class AuthMethods {
       }
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
+
       res = false;
     }
     return res;
@@ -46,8 +48,11 @@ class AuthMethods {
 
   void signOut() async {
     try {
-      _auth.signOut();
+      await _auth.signOut();
+      GoogleSignIn().signOut();
+      // googleUser.signOut();
     } catch (e) {
+      // ignore: avoid_print
       print(e);
     }
   }

@@ -28,7 +28,17 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Image.asset("assests/images/login_bg_group_therapy-v2.png"),
         ),
         CustomButton(
-          text: "Login",
+          text: "Sign Up",
+          onPressed: () async {
+            bool res = await _authMethods.signInWithGOogle(context);
+            if (res) {
+              // ignore: use_build_context_synchronously
+              Navigator.pushNamed(context, "/home");
+            }
+          },
+        ),
+        CustomButton(
+          text: "Sign In",
           onPressed: () async {
             bool res = await _authMethods.signInWithGOogle(context);
             if (res) {

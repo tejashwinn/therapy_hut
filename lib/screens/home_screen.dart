@@ -14,8 +14,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final AuthMethods _authMethods = AuthMethods();
-
   int _page = 0;
   onPageChange(int page) {
     setState(() {
@@ -27,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
     MeetingScreen(),
     const HistoryMeetingScreen(),
     const Text("contacts"),
-    CustomButton(text: 'Log Out', onPressed: () {})
+    CustomButton(text: 'Log Out', onPressed: () => AuthMethods().signOut())
   ];
 
   @override
