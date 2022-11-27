@@ -52,14 +52,10 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
   }
 
   _showError() {
-    Fluttertoast.showToast(
-        msg: "ID can't be empty",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 5,
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-        fontSize: 16.0);
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text("Room ID Cannot be empty."),
+      backgroundColor: Colors.red,
+    ));
   }
 
   @override

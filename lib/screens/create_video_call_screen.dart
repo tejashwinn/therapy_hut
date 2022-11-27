@@ -53,14 +53,10 @@ class _CreateVideoCallScreenState extends State<CreateVideoCallScreen> {
   }
 
   _showError() {
-    Fluttertoast.showToast(
-        msg: "Subject can't be empty",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 5,
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-        fontSize: 16.0);
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text("Subject Cannot be empty."),
+      backgroundColor: Colors.red,
+    ));
   }
 
   @override
