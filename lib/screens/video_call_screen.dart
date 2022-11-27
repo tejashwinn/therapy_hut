@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:therapy_hut/resources/auth_methods.dart';
 import 'package:therapy_hut/resources/jitsi_meet_methods.dart';
@@ -51,12 +50,12 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
     );
   }
 
-  _showError() {
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text("Room ID Cannot be empty."),
-      backgroundColor: Colors.red,
-    ));
-  }
+  // _showError() {
+  //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+  //     content: Text("Room ID Cannot be empty."),
+  //     backgroundColor: Colors.red,
+  //   ));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -106,8 +105,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
           const SizedBox(height: 20),
           CustomButton(
             text: "Join",
-            onPressed:
-                meetingIdCotroller.text.isEmpty ? _showError : _joinMeeting,
+            onPressed: _joinMeeting,
           ),
           const SizedBox(height: 50),
           MeetingOption(

@@ -11,8 +11,12 @@ class FireStoreMethods {
       .collection("meetings")
       .orderBy("createdAt", descending: true)
       .snapshots();
-  Stream<QuerySnapshot<Map<String, dynamic>>> get groupsActive =>
-      _firestore.collection('groups').snapshots();
+
+  Stream get groupsActive => _firestore
+      .collection('groups')
+      .orderBy("createdAt", descending: true)
+      .limit(15)
+      .snapshots();
 
   void addToMeetingHistory(String meetingName, String meetingSubject) async {
     try {
@@ -30,6 +34,7 @@ class FireStoreMethods {
         "meetingSubject": meetingSubject,
         "meetingName": meetingName,
         "createdAt": now,
+        "createdBy": _auth.currentUser!.displayName,
       });
     } catch (e) {
       // ignore: avoid_print

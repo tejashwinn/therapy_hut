@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:therapy_hut/resources/auth_methods.dart';
 import 'package:therapy_hut/screens/history_meeting_screen.dart';
 import 'package:therapy_hut/screens/meeting_screen.dart';
+import 'package:therapy_hut/screens/random_sessions.dart';
 import 'package:therapy_hut/utils/colors.dart';
 import 'package:therapy_hut/widgets/custom_button.dart';
 
@@ -23,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> pages = [
     const MeetingScreen(),
     const HistoryMeetingScreen(),
-    const Text("contacts"),
+    const RandomSessions(),
     CustomButton(text: 'Log Out', onPressed: () => AuthMethods().signOut())
   ];
 
@@ -60,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: Icon(
                   Icons.person_outline,
                 ),
-                label: "Contacts"),
+                label: "Random"),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.settings_outlined,

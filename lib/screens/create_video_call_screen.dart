@@ -51,15 +51,6 @@ class _CreateVideoCallScreenState extends State<CreateVideoCallScreen> {
         subject: meetingIdCotroller.text);
   }
 
-  _showError() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text("Subject Cannot be empty."),
-        backgroundColor: Colors.red,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,9 +101,7 @@ class _CreateVideoCallScreenState extends State<CreateVideoCallScreen> {
           ),
           CustomButton(
             text: "Join",
-            onPressed: meetingIdCotroller.text.isEmpty
-                ? _showError
-                : _createNewMeeting(),
+            onPressed: _createNewMeeting(),
           ),
           const SizedBox(height: 50),
           MeetingOption(
