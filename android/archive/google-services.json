@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "260958378086",
+    "firebase_url": "https://therapy-hut-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "therapy-hut",
+    "storage_bucket": "therapy-hut.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260958378086:android:a9df0119cea4c58d68b5a7",
+        "android_client_info": {
+          "package_name": "com.example.therapy_hut"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "260958378086-vibl171dbfug329g0lm08vt0dgqrlamr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.therapy_hut",
+            "certificate_hash": "02da08417bfdb91113777f7d6ceaa8e20910adeb"
+          }
+        },
+        {
+          "client_id": "260958378086-3fjgd1q1jnekp45rj1p7ucolqehtcsa6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUj3h5608jQq5dCuIOQXgiGlWBOiu942o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "260958378086-3fjgd1q1jnekp45rj1p7ucolqehtcsa6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
