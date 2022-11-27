@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:therapy_hut/resources/auth_methods.dart';
 import 'package:therapy_hut/resources/jitsi_meet_methods.dart';
@@ -49,6 +50,17 @@ class _CreateVideoCallScreenState extends State<CreateVideoCallScreen> {
         isVideoMuted: isVideoMuted,
         username: nameCotroller.text,
         subject: meetingIdCotroller.text);
+  }
+
+  _showError() {
+    Fluttertoast.showToast(
+        msg: "Subject can't be empty",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 5,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0);
   }
 
   @override
@@ -101,7 +113,9 @@ class _CreateVideoCallScreenState extends State<CreateVideoCallScreen> {
           ),
           CustomButton(
             text: "Join",
-            onPressed: _createNewMeeting,
+            onPressed: meetingIdCotroller.text.isEmpty
+                ? _showError
+                : _createNewMeeting(),
           ),
           const SizedBox(height: 50),
           MeetingOption(

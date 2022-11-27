@@ -1,20 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:therapy_hut/resources/jitsi_meet_methods.dart';
-
 import '../widgets/home_meeting_button.dart';
 
 class MeetingScreen extends StatelessWidget {
   const MeetingScreen({super.key});
-
-  // final JitsiMeetMethods _jitsiMeetingMethods = JitsiMeetMethods();
-  // createNewMeeting() async {
-  //   var random = Random();
-  //   String roomName = (random.nextInt(10000000) + 10000000).toString();
-  //   _jitsiMeetingMethods.createMeeting(
-  //       roomName: roomName, isAudioMuted: true, isVideoMuted: true);
-  // }
 
   joinMeeting(BuildContext context) {
     Navigator.pushNamed(context, "/video-call");
@@ -28,6 +16,7 @@ class MeetingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -45,7 +34,7 @@ class MeetingScreen extends StatelessWidget {
                 icon: Icons.calendar_today),
             HomeMeetingButton(
                 onPressed: () {},
-                text: "Share Screen",
+                text: "Share\nScreen",
                 icon: Icons.arrow_upward_rounded)
           ],
         ),

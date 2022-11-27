@@ -11,17 +11,25 @@ class FireStoreMethods {
       .collection("meetings")
       .orderBy("createdAt", descending: true)
       .snapshots();
+  Stream<QuerySnapshot<Map<String, dynamic>>> get groupsActive =>
+      _firestore.collection('groups').snapshots();
 
   void addToMeetingHistory(String meetingName, String meetingSubject) async {
     try {
+      final now = DateTime.now();
       await _firestore
           .collection('users')
           .doc(_auth.currentUser!.uid)
           .collection("meetings")
           .add({
         "meetingName": meetingName,
-        "createdAt": DateTime.now(),
+        "createdAt": now,
         "meetingSubject": meetingSubject,
+      });
+      await _firestore.collection('groups').add({
+        "meetingSubject": meetingSubject,
+        "meetingName": meetingName,
+        "createdAt": now,
       });
     } catch (e) {
       // ignore: avoid_print

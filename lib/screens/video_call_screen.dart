@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:therapy_hut/resources/auth_methods.dart';
 import 'package:therapy_hut/resources/jitsi_meet_methods.dart';
@@ -50,6 +51,17 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
     );
   }
 
+  _showError() {
+    Fluttertoast.showToast(
+        msg: "ID can't be empty",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 5,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,21 +108,11 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
             ),
           ),
           const SizedBox(height: 20),
-          // InkWell(
-          //   onTap: _joinMeeting,
-          //   child: const Padding(
-          //     padding: EdgeInsets.all(8),
-          //     child: Text(
-          //       'Join',
-          //       style: TextStyle(fontSize: 16),
-          //     ),
-          //   ),
-          // ),
           CustomButton(
             text: "Join",
-            onPressed: _joinMeeting,
+            onPressed:
+                meetingIdCotroller.text.isEmpty ? _showError : _joinMeeting,
           ),
-
           const SizedBox(height: 50),
           MeetingOption(
             text: "Mute Audio",
