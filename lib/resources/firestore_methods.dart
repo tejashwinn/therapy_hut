@@ -12,13 +12,17 @@ class FireStoreMethods {
       .orderBy("createdAt", descending: true)
       .snapshots();
 
-  void addToMeetingHistory(String meetingName) async {
+  void addToMeetingHistory(String meetingName, String meetingSubject) async {
     try {
       await _firestore
           .collection('users')
           .doc(_auth.currentUser!.uid)
           .collection("meetings")
-          .add({"meetingName": meetingName, "createdAt": DateTime.now()});
+          .add({
+        "meetingName": meetingName,
+        "createdAt": DateTime.now(),
+        "meetingSubject": meetingSubject,
+      });
     } catch (e) {
       // ignore: avoid_print
       print(e);

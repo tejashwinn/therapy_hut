@@ -1,20 +1,20 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:therapy_hut/resources/auth_methods.dart';
 import 'package:therapy_hut/resources/jitsi_meet_methods.dart';
 import 'package:therapy_hut/utils/colors.dart';
+import 'package:therapy_hut/widgets/custom_button.dart';
 import 'package:therapy_hut/widgets/meeting_option.dart';
 
-import '../widgets/custom_button.dart';
-
-class VideoCallScreen extends StatefulWidget {
-  const VideoCallScreen({super.key});
+class CreateVideoCallScreen extends StatefulWidget {
+  const CreateVideoCallScreen({super.key});
 
   @override
-  State<VideoCallScreen> createState() => _VideoCallScreenState();
+  State<CreateVideoCallScreen> createState() => _CreateVideoCallScreenState();
 }
 
-class _VideoCallScreenState extends State<VideoCallScreen> {
+class _CreateVideoCallScreenState extends State<CreateVideoCallScreen> {
   late TextEditingController meetingIdCotroller;
   late TextEditingController nameCotroller;
 
@@ -41,13 +41,14 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
     JitsiMeet.removeAllListeners();
   }
 
-  _joinMeeting() {
+  _createNewMeeting() {
+    var random = Random();
     _jitsiMeetingMethods.createMeeting(
-      roomName: meetingIdCotroller.text,
-      isAudioMuted: isAudioMuted,
-      isVideoMuted: isVideoMuted,
-      username: nameCotroller.text,
-    );
+        roomName: (random.nextInt(10000000) + 10000000).toString(),
+        isAudioMuted: isAudioMuted,
+        isVideoMuted: isVideoMuted,
+        username: nameCotroller.text,
+        subject: meetingIdCotroller.text);
   }
 
   @override
@@ -57,7 +58,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
         elevation: 0,
         backgroundColor: backgroundColor,
         title: const Text(
-          "Join an Existing Session",
+          "Create a Group Therapy Session",
           style: TextStyle(fontSize: 18),
         ),
         centerTitle: true,
@@ -70,12 +71,12 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
               controller: meetingIdCotroller,
               maxLines: 1,
               textAlign: TextAlign.center,
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.text,
               decoration: const InputDecoration(
                   fillColor: secondaryBackgroundColor,
                   filled: true,
                   border: InputBorder.none,
-                  hintText: "Enter the Room Id",
+                  hintText: "Enter the Subject",
                   contentPadding: EdgeInsets.fromLTRB(16, 8, 0, 0)),
             ),
           ),
@@ -90,27 +91,18 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                 fillColor: secondaryBackgroundColor,
                 filled: true,
                 border: InputBorder.none,
-                hintText: "Name",
+                hintText: "Enter your display name",
                 contentPadding: EdgeInsets.fromLTRB(16, 8, 0, 0),
               ),
             ),
           ),
-          const SizedBox(height: 20),
-          // InkWell(
-          //   onTap: _joinMeeting,
-          //   child: const Padding(
-          //     padding: EdgeInsets.all(8),
-          //     child: Text(
-          //       'Join',
-          //       style: TextStyle(fontSize: 16),
-          //     ),
-          //   ),
-          // ),
+          const SizedBox(
+            height: 20,
+          ),
           CustomButton(
             text: "Join",
-            onPressed: _joinMeeting,
+            onPressed: _createNewMeeting,
           ),
-
           const SizedBox(height: 50),
           MeetingOption(
             text: "Mute Audio",

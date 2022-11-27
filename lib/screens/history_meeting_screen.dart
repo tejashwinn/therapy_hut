@@ -23,7 +23,7 @@ class HistoryMeetingScreen extends StatelessWidget {
               'Session Id: ${(snapshot.data! as dynamic).docs[index]['meetingName']}',
             ),
             subtitle: Text(
-              'Joined on ${DateFormat.yMMMd().format((snapshot.data! as dynamic).docs[index]['createdAt'].toDate())} ${DateFormat.jm().format((snapshot.data! as dynamic).docs[index]['createdAt'].toDate())}',
+              'Joined on ${DateFormat.yMMMd().format((snapshot.data! as dynamic).docs[index]['createdAt'].toDate())} ${DateFormat.jm().format((snapshot.data! as dynamic).docs[index]['createdAt'].toDate())} \n Topic: ${(snapshot.data! as dynamic).docs[index]['meetingSubject']}',
             ),
           ),
         );

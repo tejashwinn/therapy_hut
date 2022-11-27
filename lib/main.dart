@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:therapy_hut/resources/auth_methods.dart';
+import 'package:therapy_hut/screens/create_video_call_screen.dart';
 import 'package:therapy_hut/screens/home_screen.dart';
 import 'package:therapy_hut/screens/login_screen.dart';
 import 'package:therapy_hut/screens/video_call_screen.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         "/login": (context) => const LoginScreen(),
         "/home": (context) => const HomeScreen(),
         "/video-call": (context) => const VideoCallScreen(),
+        "/video-new-call": (context) => const CreateVideoCallScreen(),
       },
       home: StreamBuilder(
           stream: AuthMethods().authChanges,

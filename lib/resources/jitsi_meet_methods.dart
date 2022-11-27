@@ -11,6 +11,7 @@ class JitsiMeetMethods {
     required bool isAudioMuted,
     required bool isVideoMuted,
     String username = '',
+    String subject = '',
   }) async {
     try {
       FeatureFlag featureFlag = FeatureFlag();
@@ -31,8 +32,9 @@ class JitsiMeetMethods {
         ..userEmail = _authMethods.user.email
         ..userAvatarURL = _authMethods.user.photoURL
         ..audioMuted = isAudioMuted
-        ..videoMuted = isVideoMuted;
-      _fireStoreMethods.addToMeetingHistory(roomName);
+        ..videoMuted = isVideoMuted
+        ..subject = subject.isEmpty ? "null" : subject;
+      _fireStoreMethods.addToMeetingHistory(roomName, subject);
       await JitsiMeet.joinMeeting(options);
     } catch (error) {
       // ignore: avoid_print
