@@ -49,7 +49,7 @@ class _HistoryMeetingScreenState extends State<HistoryMeetingScreen> {
                   .toString(),
             ),
             title: Text(
-              '${(snapshot.data! as dynamic).docs[index]['meetingSubject'].isEmpty ? (snapshot.data! as dynamic).docs[index]['meetingName'] : (snapshot.data! as dynamic).docs[index]['meetingSubject']}',
+              '${(snapshot.data! as dynamic).docs[index]['meetingSubject']}',
             ),
             subtitle: Text(
               'Session Id: ${(snapshot.data! as dynamic).docs[index]['meetingName']}\nJoined on: ${DateFormat.yMMMd().format((snapshot.data! as dynamic).docs[index]['createdAt'].toDate())} ${DateFormat.jm().format((snapshot.data! as dynamic).docs[index]['createdAt'].toDate())}',

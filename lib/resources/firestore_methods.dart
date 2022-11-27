@@ -20,20 +20,20 @@ class FireStoreMethods {
 
   void addToMeetingHistory(String meetingName, String meetingSubject) async {
     try {
-      final now = DateTime.now();
       await _firestore
           .collection('users')
           .doc(_auth.currentUser!.uid)
           .collection("meetings")
           .add({
         "meetingName": meetingName,
-        "createdAt": now,
+        "createdAt": DateTime.now(),
         "meetingSubject": meetingSubject,
       });
+
       await _firestore.collection('groups').add({
         "meetingSubject": meetingSubject,
         "meetingName": meetingName,
-        "createdAt": now,
+        "createdAt": DateTime.now(),
         "createdBy": _auth.currentUser!.displayName,
       });
     } catch (e) {

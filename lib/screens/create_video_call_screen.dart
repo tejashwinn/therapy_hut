@@ -15,7 +15,7 @@ class CreateVideoCallScreen extends StatefulWidget {
 }
 
 class _CreateVideoCallScreenState extends State<CreateVideoCallScreen> {
-  late TextEditingController meetingIdCotroller;
+  late TextEditingController meetingSubjectController;
   late TextEditingController nameCotroller;
 
   final AuthMethods _authMethods = AuthMethods();
@@ -26,7 +26,7 @@ class _CreateVideoCallScreenState extends State<CreateVideoCallScreen> {
 
   @override
   void initState() {
-    meetingIdCotroller = TextEditingController();
+    meetingSubjectController = TextEditingController(text: "");
     nameCotroller = TextEditingController(
       text: _authMethods.user.displayName,
     );
@@ -36,7 +36,7 @@ class _CreateVideoCallScreenState extends State<CreateVideoCallScreen> {
   @override
   void dispose() {
     super.dispose();
-    meetingIdCotroller.dispose();
+    meetingSubjectController.dispose();
     nameCotroller.dispose();
     JitsiMeet.removeAllListeners();
   }
@@ -48,7 +48,16 @@ class _CreateVideoCallScreenState extends State<CreateVideoCallScreen> {
         isAudioMuted: isAudioMuted,
         isVideoMuted: isVideoMuted,
         username: nameCotroller.text,
-        subject: meetingIdCotroller.text);
+        subject: meetingSubjectController.text);
+  }
+
+  _showError() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Subject Cannot be empty."),
+        backgroundColor: Colors.red,
+      ),
+    );
   }
 
   @override
@@ -68,13 +77,12 @@ class _CreateVideoCallScreenState extends State<CreateVideoCallScreen> {
           SizedBox(
             height: 60,
             child: TextField(
-              controller: meetingIdCotroller,
+              controller: meetingSubjectController,
               maxLines: 1,
               textAlign: TextAlign.center,
               keyboardType: TextInputType.text,
               decoration: const InputDecoration(
                   fillColor: secondaryBackgroundColor,
-                  filled: true,
                   border: InputBorder.none,
                   hintText: "Enter the Subject",
                   contentPadding: EdgeInsets.fromLTRB(16, 8, 0, 0)),
@@ -100,8 +108,11 @@ class _CreateVideoCallScreenState extends State<CreateVideoCallScreen> {
             height: 20,
           ),
           CustomButton(
-            text: "Join",
-            onPressed: _createNewMeeting(),
+            text: "Create",
+            // onPressed: meetingSubjectController.text.isEmpty
+            // ? _showError
+            // : _createNewMeeting,
+            onPressed: _createNewMeeting,
           ),
           const SizedBox(height: 50),
           MeetingOption(

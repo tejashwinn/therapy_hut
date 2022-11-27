@@ -34,7 +34,9 @@ class JitsiMeetMethods {
         ..audioMuted = isAudioMuted
         ..videoMuted = isVideoMuted
         ..subject = subject.isEmpty ? name : subject;
-      _fireStoreMethods.addToMeetingHistory(roomName, subject);
+      subject.isEmpty
+          ? _fireStoreMethods.addToMeetingHistory(roomName, "")
+          : _fireStoreMethods.addToMeetingHistory(roomName, subject);
       await JitsiMeet.joinMeeting(options);
     } catch (error) {
       // ignore: avoid_print
