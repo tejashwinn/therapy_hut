@@ -8,7 +8,7 @@ import '../widgets/home_meeting_button.dart';
 class MeetingScreen extends StatelessWidget {
   MeetingScreen({super.key});
 
-  final JitsiMeetingMethods _jitsiMeetingMethods = JitsiMeetingMethods();
+  final JitsiMeetMethods _jitsiMeetingMethods = JitsiMeetMethods();
   createNewMeeting() async {
     var random = Random();
     String roomName = (random.nextInt(10000000) + 10000000).toString();

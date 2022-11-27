@@ -17,7 +17,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
   late TextEditingController nameCotroller;
 
   final AuthMethods _authMethods = AuthMethods();
-  final JitsiMeetingMethods _jitsiMeetingMethods = JitsiMeetingMethods();
+  final JitsiMeetMethods _jitsiMeetingMethods = JitsiMeetMethods();
 
   bool isAudioMuted = true;
   bool isVideoMuted = true;

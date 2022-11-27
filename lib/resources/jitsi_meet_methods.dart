@@ -3,7 +3,7 @@ import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:therapy_hut/resources/auth_methods.dart';
 import 'package:therapy_hut/resources/firestore_methods.dart';
 
-class JitsiMeetingMethods {
+class JitsiMeetMethods {
   final AuthMethods _authMethods = AuthMethods();
   final FireStoreMethods _fireStoreMethods = FireStoreMethods();
   void createMeeting({
